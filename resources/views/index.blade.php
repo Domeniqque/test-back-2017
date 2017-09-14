@@ -15,7 +15,7 @@
                     <p> OR </p>
                     <h1 class="call-num"> 1-800-643-4500 </h1>
                 </div>
-                <div class="col-md-7"><img src="image/pic-1.png" class="img-responsive" alt="doctor"></div>
+                <div class="col-md-7"><img src="{{ asset('image/pic-1.png') }}" class="img-responsive" alt="doctor"></div>
             </div>
         </div>
     </section>
@@ -53,20 +53,20 @@
 
 
                 <div class="col-md-offset-1 col-md-4">
-                    <div class="appoinment-form">
+                    <div class="appointment-form">
                         <h3> Make an appointment today </h3>
-                        <form role="form" onSubmit="return send_email();">
+                        <form role="form" action="{{ route('leads.store') }}">
                             <div class="form-group">
-                                <label for="exampleInputName">Name</label>
-                                <input type="text" class="form-control" id="app_name" placeholder="Name" required>
+                                <label for="lead_name">Name</label>
+                                <input type="text" class="form-control" name="name" id="lead_name" placeholder="Name" required>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">E-mail</label>
-                                <input type="text" class="form-control" id="app_email" placeholder="E-mail" required>
+                                <label for="lead_email">E-mail</label>
+                                <input type="email" class="form-control" name="email" id="lead_email" placeholder="E-mail" required>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Phone</label>
-                                <input type="text" class="form-control" id="app_phone" placeholder="Phone">
+                                <label for="lead_phone">Phone</label>
+                                <input type="text" class="form-control" name="email" id="lead_phone" placeholder="Phone">
                             </div>
                             <button type="submit" class="btn btn-block btn-orange btn-Submit">SUBMIT</button>
                             <small id="mail_msg"></small>
@@ -139,7 +139,7 @@
             </div>
             <div class="row">
                 <div class="col-md-4 doctor-profile">
-                    <div class="bg-profile"><img src="image/team-3.png" alt=""></div>
+                    <div class="bg-profile"><img src="{{ asset('image/team-3.png') }}" alt=""></div>
                     <h3> Dr. Rodney Stratton </h3>
                     <strong>Physiotherapist | (985) 123-3410 </strong>
                     <p> Sed tristique turpis a libero malesuada, tincidunt elementum mauris euismod. </p>
@@ -148,7 +148,7 @@
                                     class="fa  fa-twitter-square fa-size"> </i> </a></div>
                 </div>
                 <div class="col-md-4 doctor-profile">
-                    <div class="bg-profile"><img src="image/team-1.png" alt=""></div>
+                    <div class="bg-profile"><img src="{{ asset('image/team-1.png') }}" alt=""></div>
                     <h3> Robert Brown, Prof. </h3>
                     <strong>Anesthesiologist | (985) 231-1234</strong>
                     <p> Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat </p>
@@ -157,7 +157,7 @@
                                     class="fa  fa-twitter-square fa-size"> </i> </a></div>
                 </div>
                 <div class="col-md-4 doctor-profile">
-                    <div class="bg-profile"><img src="image/team-2.png" alt=""></div>
+                    <div class="bg-profile"><img src="{{ asset('image/team-2.png') }}" alt=""></div>
                     <h3> Dr. Lita White </h3>
                     <strong> Neurosurgeon | (985) 231-1234</strong>
                     <p> Maecenas commodo turpis adipiscing, malesuada ipsum in, molestie magna. </p>
@@ -177,13 +177,13 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-2"><img src="image/men.jpg" class="img-circle client-circle" alt="pic-4"></div>
+                    <div class="col-md-2"><img src="{{ asset('image/men.jpg" class') }}" class="img-circle client-circle" alt="pic-4"></div>
                     <div class="col-md-4">
                         <p> “As a caretaker, I was unfamiliar with how Medicare works. The agent I spoke with helped me
                             determine which plan would be best.” </p>
                         <span> - Brandon Feil <a href="#"> ( Patient ) </a> </span>
                     </div>
-                    <div class="col-md-2"><img src="image/grl.jpg" class="img-circle client-circle" alt="pic-4"></div>
+                    <div class="col-md-2"><img src="{{ asset('image/grl.jpg" class') }}" class="img-circle client-circle" alt="pic-4"></div>
                     <div class="col-md-4">
                         <p> “As a caretaker, I was unfamiliar with how Medicare works. The agent I spoke with helped me
                             determine which plan would be best.”</p>
@@ -201,12 +201,12 @@
             </div>
             <div class="row">
                 <div id="owl-demo" class="client-logo">
-                    <div class="item col-md-3"><img src="image/logo-3.png" alt="client logo"></div>
-                    <div class="item col-md-3"><img src="image/logo-2.png" alt="client logo"></div>
-                    <div class="item col-md-3"><img src="image/logo-3.png" alt="client logo"></div>
-                    <div class="item col-md-3"><img src="image/logo-2.png" alt="client logo"></div>
-                    <div class="item col-md-3"><img src="image/logo-3.png" alt="client logo"></div>
-                    <div class="item col-md-3"><img src="image/logo-2.png" alt="client logo"></div>
+                    <div class="item col-md-3"><img src="{{ asset('image/logo-3.png') }}" alt="client logo"></div>
+                    <div class="item col-md-3"><img src="{{ asset('image/logo-2.png') }}" alt="client logo"></div>
+                    <div class="item col-md-3"><img src="{{ asset('image/logo-3.png') }}" alt="client logo"></div>
+                    <div class="item col-md-3"><img src="{{ asset('image/logo-2.png') }}" alt="client logo"></div>
+                    <div class="item col-md-3"><img src="{{ asset('image/logo-3.png') }}" alt="client logo"></div>
+                    <div class="item col-md-3"><img src="{{ asset('image/logo-2.png') }}" alt="client logo"></div>
                 </div>
             </div>
         </div><!-- Client close -->
