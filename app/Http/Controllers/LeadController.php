@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Lead;
+use App\Mail\AppointmentMarked;
+use Illuminate\Support\Facades\Mail;
 
 class LeadController extends Controller
 {
@@ -25,9 +27,10 @@ class LeadController extends Controller
             'phone' => 'required',
         ]);
 
-        $this->model->create(
-            request(['name', 'email', 'phone'])
-        );
+        $lead = $this->model->create(request(['name', 'email', 'phone']));
+
+        Mail::to(request('email'))
+            ->queue(new AppointmentMarked($lead));
 
         return view('appointment_success');
     }

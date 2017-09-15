@@ -2,11 +2,18 @@
 
 namespace Tests\Feature;
 
+use App\Mail\AppointmentMarked;
+use Illuminate\Support\Facades\Mail;
+use Mockery\Mock;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class LeadTest extends TestCase
 {
+    /**
+     * @var Mock
+     */
+    protected $lead;
+
     public function testShouldValidateLead()
     {
         $response = $this->call('POST', '/leads', [
@@ -23,16 +30,35 @@ class LeadTest extends TestCase
 
     public function testIfCreateAndReturnAppointmentSuccessView()
     {
-        $lead = \Mockery::mock('App\Lead')->shouldReceive('create');
-        app()->instance('App\Lead', $lead->getMock());
+        $response = $this->createLead();
 
-        $response = $this->call('POST', '/leads', [
-            'name' => 'Domeniqque',
-            'phone' => '96 9655-6546',
-            'email' => 'domeniqque@hotmail.com'
-        ]);
+        $this->lead->shouldHaveReceived('create')->once();
 
         $response->assertStatus(200)
             ->assertViewIs('appointment_success');
+    }
+
+    public function testIfSendEmailToAdmin()
+    {
+        Mail::fake();
+        $response = $this->createLead();
+
+        $response->assertStatus(200);
+
+        Mail::assertSent(AppointmentMarked::class);
+    }
+
+    private function createLead()
+    {
+        app()->instance(
+            'App\Lead',
+            $this->lead = \Mockery::spy('App\Lead')
+        );
+
+        return $this->call('POST', '/leads', [
+            'name' => 'Domeniqque Dylluar',
+            'phone' => '96 9655-6546',
+            'email' => 'domeniqque@hotmail.com'
+        ]);
     }
 }
