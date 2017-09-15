@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Doctor;
+
 class HomeController extends Controller
 {
-    public function index()
+    public function index(Doctor $doctor)
     {
-        return view('index');
+        $doctors = $doctor->all();
+
+        return view('index', compact('doctors'));
     }
 }

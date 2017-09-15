@@ -25,7 +25,9 @@ class LeadController extends Controller
             'phone' => 'required',
         ]);
 
-        $this->model->create(request(['email', 'email', 'phone']));
+        $this->model->create(
+            request(['name', 'email', 'phone'])
+        );
 
         return view('appointment_success');
     }

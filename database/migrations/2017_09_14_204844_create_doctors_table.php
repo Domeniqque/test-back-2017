@@ -19,7 +19,7 @@ class CreateDoctorsTable extends Migration
             $table->string('speciality');
             $table->string('phone');
             $table->string('description');
-            $table->string('photo');
+            $table->string('photo')->nullable();
             $table->timestamps();
         });
     }

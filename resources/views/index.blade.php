@@ -55,7 +55,9 @@
                 <div class="col-md-offset-1 col-md-4">
                     <div class="appointment-form">
                         <h3> Make an appointment today </h3>
-                        <form role="form" action="{{ route('leads.store') }}">
+                        <form role="form" method="POST" action="{{ route('leads.store') }}">
+                            {{ csrf_field() }}
+
                             <div class="form-group">
                                 <label for="lead_name">Name</label>
                                 <input type="text" class="form-control" name="name" id="lead_name" placeholder="Name" required>
@@ -66,7 +68,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="lead_phone">Phone</label>
-                                <input type="text" class="form-control" name="email" id="lead_phone" placeholder="Phone">
+                                <input type="text" class="form-control" name="phone" id="lead_phone" placeholder="Phone">
                             </div>
                             <button type="submit" class="btn btn-block btn-orange btn-Submit">SUBMIT</button>
                             <small id="mail_msg"></small>
@@ -138,34 +140,25 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4 doctor-profile">
-                    <div class="bg-profile"><img src="{{ asset('image/team-3.png') }}" alt=""></div>
-                    <h3> Dr. Rodney Stratton </h3>
-                    <strong>Physiotherapist | (985) 123-3410 </strong>
-                    <p> Sed tristique turpis a libero malesuada, tincidunt elementum mauris euismod. </p>
-                    <div class="social"><a href="#"><i class="fa fa-facebook-square fa-size"> </i></a> <a href="#"><i
-                                    class="fa fa-linkedin-square fa-size"> </i> </a> <a href="#"><i
-                                    class="fa  fa-twitter-square fa-size"> </i> </a></div>
-                </div>
-                <div class="col-md-4 doctor-profile">
-                    <div class="bg-profile"><img src="{{ asset('image/team-1.png') }}" alt=""></div>
-                    <h3> Robert Brown, Prof. </h3>
-                    <strong>Anesthesiologist | (985) 231-1234</strong>
-                    <p> Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat </p>
-                    <div class="social"><a href="#"><i class="fa fa-facebook-square fa-size"> </i></a> <a href="#"><i
-                                    class="fa fa-linkedin-square fa-size"> </i> </a> <a href="#"><i
-                                    class="fa  fa-twitter-square fa-size"> </i> </a></div>
-                </div>
-                <div class="col-md-4 doctor-profile">
-                    <div class="bg-profile"><img src="{{ asset('image/team-2.png') }}" alt=""></div>
-                    <h3> Dr. Lita White </h3>
-                    <strong> Neurosurgeon | (985) 231-1234</strong>
-                    <p> Maecenas commodo turpis adipiscing, malesuada ipsum in, molestie magna. </p>
-                    <div class="social"><a href="#"><i class="fa fa-facebook-square fa-size"> </i></a> <a href="#"><i
-                                    class="fa fa-linkedin-square fa-size"> </i> </a> <a href="#"><i
-                                    class="fa  fa-twitter-square fa-size"> </i> </a></div>
-                </div>
+                @foreach($doctors as $doctor)
+                    <div class="col-md-4 doctor-profile">
+                        <div class="bg-profile">
+                            <img src="{{ asset($doctor->photo) }}" alt="{{ $doctor->name }}">
+                        </div>
 
+                        <h3>{{ $doctor->name }}</h3>
+
+                        <strong>{{ $doctor->speciality }} | {{ $doctor->phone }}</strong>
+
+                        <p>{{ $doctor->description }}</p>
+
+                        <div class="social">
+                            <a href="#"><i class="fa fa-facebook-square fa-size"></i></a>
+                            <a href="#"><i class="fa fa-linkedin-square fa-size"></i></a>
+                            <a href="#"><i class="fa fa-twitter-square fa-size"></i></a>
+                        </div>
+                    </div>
+                @endforeach
             </div>
         </div>
         <div class="testimonials"><!-- Testimonials start -->
