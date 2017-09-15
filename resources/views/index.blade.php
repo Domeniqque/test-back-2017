@@ -177,13 +177,13 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-2"><img src="{{ asset('image/men.jpg" class') }}" class="img-circle client-circle" alt="pic-4"></div>
+                    <div class="col-md-2"><img src="{{ asset('image/men.jpg') }}" class="img-circle client-circle" alt="pic-4"></div>
                     <div class="col-md-4">
                         <p> “As a caretaker, I was unfamiliar with how Medicare works. The agent I spoke with helped me
                             determine which plan would be best.” </p>
                         <span> - Brandon Feil <a href="#"> ( Patient ) </a> </span>
                     </div>
-                    <div class="col-md-2"><img src="{{ asset('image/grl.jpg" class') }}" class="img-circle client-circle" alt="pic-4"></div>
+                    <div class="col-md-2"><img src="{{ asset('image/grl.jpg') }}" class="img-circle client-circle" alt="pic-4"></div>
                     <div class="col-md-4">
                         <p> “As a caretaker, I was unfamiliar with how Medicare works. The agent I spoke with helped me
                             determine which plan would be best.”</p>
