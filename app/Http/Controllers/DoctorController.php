@@ -12,11 +12,19 @@ class DoctorController extends Controller
      */
     protected $model;
 
+    /**
+     * DoctorController constructor.
+     * @param Doctor $doctor
+     */
     public function __construct(Doctor $doctor)
     {
         $this->model = $doctor;
     }
 
+    /**
+     * Return all doctors in database
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function all()
     {
         $doctors = $this->model->all()->map(function ($doctor) {
@@ -37,6 +45,11 @@ class DoctorController extends Controller
         ]);
     }
 
+    /**
+     * Display a doctor
+     * @param Doctor $doctor
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function show(Doctor $doctor)
     {
         return view('doctor', compact('doctor'));
