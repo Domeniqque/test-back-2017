@@ -28,13 +28,13 @@ class LeadTest extends TestCase
             ]);
     }
 
-    public function testIfCreateAndReturnAppointmentSuccessView()
+    public function testIfCreateAndRedirectToAppointmentSuccessView()
     {
         [$_, $response] = $this->createLead();
         $this->lead->shouldHaveReceived('create')->once();
 
-        $response->assertStatus(200)
-            ->assertViewIs('appointment_success');
+        $response->assertStatus(302)
+            ->assertRedirect(route('leads.success'));
     }
 
     public function testIfSendEmailToAdmin()
@@ -42,7 +42,7 @@ class LeadTest extends TestCase
 
         [$lead, $response] = $this->createLead();
 
-        $response->assertStatus(200);
+        $response->assertStatus(302);
 
         Mail::assertSent(AppointmentMarked::class, function ($mail) use ($lead) {
             return $mail->hasTo($lead['email']);
