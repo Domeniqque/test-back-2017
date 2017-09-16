@@ -10,7 +10,7 @@ class AppointmentMarked extends Mailable
 {
     use Queueable, SerializesModels;
 
-    protected $appointment;
+    public $appointment;
 
     /**
      * Create a new message instance.

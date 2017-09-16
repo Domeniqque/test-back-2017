@@ -8,8 +8,15 @@ use Illuminate\Support\Facades\Mail;
 
 class LeadController extends Controller
 {
+    /**
+     * @var Lead
+     */
     protected $model;
 
+    /**
+     * LeadController constructor.
+     * @param Lead $lead
+     */
     public function __construct(Lead $lead)
     {
         $this->model = $lead;
@@ -30,7 +37,7 @@ class LeadController extends Controller
         $lead = $this->model->create(request(['name', 'email', 'phone']));
 
         Mail::to(request('email'))
-            ->queue(new AppointmentMarked($lead));
+            ->send(new AppointmentMarked($lead));
 
         return view('appointment_success');
     }

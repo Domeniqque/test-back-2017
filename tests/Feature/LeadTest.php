@@ -30,8 +30,7 @@ class LeadTest extends TestCase
 
     public function testIfCreateAndReturnAppointmentSuccessView()
     {
-        $response = $this->createLead();
-
+        [$_, $response] = $this->createLead();
         $this->lead->shouldHaveReceived('create')->once();
 
         $response->assertStatus(200)
@@ -40,12 +39,14 @@ class LeadTest extends TestCase
 
     public function testIfSendEmailToAdmin()
     {
-        Mail::fake();
-        $response = $this->createLead();
+
+        [$lead, $response] = $this->createLead();
 
         $response->assertStatus(200);
 
-        Mail::assertSent(AppointmentMarked::class);
+        Mail::assertSent(AppointmentMarked::class, function ($mail) use ($lead) {
+            return $mail->hasTo($lead['email']);
+        });
     }
 
     private function createLead()
@@ -55,10 +56,16 @@ class LeadTest extends TestCase
             $this->lead = \Mockery::spy('App\Lead')
         );
 
-        return $this->call('POST', '/leads', [
+        $lead = [
             'name' => 'Domeniqque Dylluar',
-            'phone' => '96 9655-6546',
-            'email' => 'domeniqque@hotmail.com'
-        ]);
+            'phone' => '96 0000-6546',
+            'email' => str_random(12) . '@hotmail.com'
+        ];
+
+        Mail::fake();
+
+        $response = $this->post('/leads', $lead);
+
+        return [$lead, $response];
     }
 }
