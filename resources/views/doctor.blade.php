@@ -5,9 +5,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-7">
-                    <h1>Nome do Doutor</h1>
-                    <h1>Especialidade</h1>
-                    <p class="lead">Descrição</p>
+                    <h1>{{ $doctor->name }}</h1>
+                    <h1>{{ $doctor->speciality }}</h1>
+                    <p class="lead">{{ $doctor->description }}</p>
                 </div>
             </div>
         </div>

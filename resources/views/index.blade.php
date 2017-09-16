@@ -143,7 +143,9 @@
                 @foreach($doctors as $doctor)
                     <div class="col-md-4 doctor-profile">
                         <div class="bg-profile">
-                            <img src="{{ asset($doctor->photo) }}" alt="{{ $doctor->name }}">
+                            <a href="{{ route('doctors.show', $doctor->id) }}">
+                                <img src="{{ asset($doctor->photo) }}" alt="{{ $doctor->name }}">
+                            </a>
                         </div>
 
                         <h3>{{ $doctor->name }}</h3>
