@@ -39,6 +39,15 @@ class LeadController extends Controller
         Mail::to(request('email'))
             ->send(new AppointmentMarked($lead));
 
+        return redirect()->route('leads.success');
+    }
+
+    /**
+     * Redirect to page appointment success
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function success()
+    {
         return view('appointment_success');
     }
 }
