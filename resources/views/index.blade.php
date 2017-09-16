@@ -53,6 +53,16 @@
 
 
                 <div class="col-md-offset-1 col-md-4">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
                     <div class="appointment-form">
                         <h3> Make an appointment today </h3>
                         <form role="form" method="POST" action="{{ route('leads.store') }}">
