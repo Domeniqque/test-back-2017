@@ -19,3 +19,11 @@ $("#owl-demo").owlCarousel({
     itemsDesktop: [1199, 3],
     itemsDesktopSmall: [979, 3]
 });
+
+// Disabled submit button on click it
+$(".btn-Submit").on('click', function () {
+    var $button = $(this);
+
+    $button.prop('disabled', true);
+    $button.parent().submit();
+});
